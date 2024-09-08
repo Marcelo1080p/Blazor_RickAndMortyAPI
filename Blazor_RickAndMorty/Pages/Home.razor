@@ -1,4 +1,5 @@
 ﻿@page "/"
+@using Blazor_RickAndMorty.components
 @inject Blazor_RickAndMorty.Services.IRickAndMortyService RickAndMortyService
 
 <PageTitle>Home</PageTitle>
@@ -7,21 +8,18 @@
 
 @if (characters.Count == 0)
 {
-    <p><em>Loading...</em></p>
+    <MudProgressCircular Color="Color.Success" Indeterminate="true" />
 }
 else
 {
-    <div class="character-list">
+    <MudGrid>    
         @foreach (var character in characters)
         {
-            <div class="character-card">
-                <img src="@character.Image" alt="@character.Name" />
-                <p><strong>@character.Name</strong></p>
-                <p>Species: @character.Species</p>
-                <p>Status: @character.Status</p>
-            </div>
+            <MudItem>
+                <CardCharacter Character="character" />
+            </MudItem>
         }
-    </div>
+    </MudGrid>
 }
 
 @code {
@@ -29,7 +27,6 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        // Chamando o serviço para obter os personagens
         characters = await RickAndMortyService.GetCharacters();
     }
 }

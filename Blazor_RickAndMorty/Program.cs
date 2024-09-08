@@ -2,6 +2,7 @@ using Blazor_RickAndMorty;
 using Blazor_RickAndMorty.Services;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
+using MudBlazor.Services;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");
@@ -12,6 +13,8 @@ builder.Services.AddHttpClient<IRickAndMortyService, RickAndMortyService>(client
 {
     client.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress);
 });
+builder.Services.AddMudServices();
+
 
 // Não é necessário registrar HttpClient separadamente se você já fez isso acima
 // builder.Services.AddHttpClient();

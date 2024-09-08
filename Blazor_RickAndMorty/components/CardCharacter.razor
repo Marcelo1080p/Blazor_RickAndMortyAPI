@@ -1,0 +1,16 @@
+﻿@using Blazor_RickAndMorty.Models
+
+<MudCard Style="width: 250px">
+    <MudCardHeader>
+        <CardHeaderContent>
+            <MudText Typo="Typo.body1">@Character.Name</MudText>
+            <MudText Typo="Typo.body2">@Character.Status</MudText>
+        </CardHeaderContent>
+    </MudCardHeader>
+    <MudCardMedia Image="@Character.Image" Height="250" />
+</MudCard>
+
+@code {
+    [Parameter]
+    public Character Character { get; set; }
+}
