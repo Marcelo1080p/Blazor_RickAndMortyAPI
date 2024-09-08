@@ -1,0 +1,35 @@
+﻿@page "/"
+@inject Blazor_RickAndMorty.Services.IRickAndMortyService RickAndMortyService
+
+<PageTitle>Home</PageTitle>
+
+<h3>Rick and Morty Characters</h3>
+
+@if (characters.Count == 0)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <div class="character-list">
+        @foreach (var character in characters)
+        {
+            <div class="character-card">
+                <img src="@character.Image" alt="@character.Name" />
+                <p><strong>@character.Name</strong></p>
+                <p>Species: @character.Species</p>
+                <p>Status: @character.Status</p>
+            </div>
+        }
+    </div>
+}
+
+@code {
+    private List<Blazor_RickAndMorty.Models.Character> characters = new List<Blazor_RickAndMorty.Models.Character>(); // Inicializando a lista
+
+    protected override async Task OnInitializedAsync()
+    {
+        // Chamando o serviço para obter os personagens
+        characters = await RickAndMortyService.GetCharacters();
+    }
+}
