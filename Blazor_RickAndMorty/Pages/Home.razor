@@ -4,23 +4,24 @@
 
 <PageTitle>Home</PageTitle>
 
-<h3>Rick and Morty Characters</h3>
+<div>
+    @if (characters.Count == 0)
+    {
+        <MudProgressCircular Color="Color.Success" Indeterminate="true" />
+    }
+    else
+    {
+        <MudGrid AlignItems="center" JustifyContent="center">
+            @foreach (var character in characters)
+            {
+                <MudItem xs="12" sm="6" md="4" lg="3">
+                    <CardCharacter Character="character" />
+                </MudItem>
+            }
+        </MudGrid>
+    }
+</div>
 
-@if (characters.Count == 0)
-{
-    <MudProgressCircular Color="Color.Success" Indeterminate="true" />
-}
-else
-{
-    <MudGrid>    
-        @foreach (var character in characters)
-        {
-            <MudItem>
-                <CardCharacter Character="character" />
-            </MudItem>
-        }
-    </MudGrid>
-}
 
 @code {
     private List<Blazor_RickAndMorty.Models.Character> characters = new List<Blazor_RickAndMorty.Models.Character>(); // Inicializando a lista

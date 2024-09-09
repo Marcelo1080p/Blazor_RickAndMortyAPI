@@ -2,6 +2,9 @@
     position: relative;
     display: flex;
     flex-direction: column;
+    background: url("https://image.lexica.art/full_webp/f2569133-0d68-44d5-a2d1-0e7ec1b8a38a");
+    background-position: center;
+    background-size: cover;
 }
 
 main {

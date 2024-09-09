@@ -1,10 +1,10 @@
 ﻿@using Blazor_RickAndMorty.Models
 
-<MudCard Style="width: 250px">
+<MudCard Class="containerCard">
     <MudCardHeader>
         <CardHeaderContent>
             <MudText Typo="Typo.body1">@Character.Name</MudText>
-            <MudText Typo="Typo.body2">@Character.Status</MudText>
+            <MudText Typo="Typo.body2" Style="@($"color: {Colors(Character.Status)}")">@Character.Status</MudText>
         </CardHeaderContent>
     </MudCardHeader>
     <MudCardMedia Image="@Character.Image" Height="250" />
@@ -13,4 +13,30 @@
 @code {
     [Parameter]
     public Character Character { get; set; }
+
+
+    public string Colors(string color)
+    {
+        if (color == "Alive")
+        {
+            return "green";
+        }
+        else if (color == "Dead")
+        {
+            return "red";
+        }
+        return "gray";
+    }
 }
+
+
+<style>
+    .containerCard {
+        width: 250px;
+        color: #FFFFFF;
+        font-weight: 500;
+        background-color: #1E232E;
+        border-radius: 8px;
+        overflow: hidden;
+    }
+</style>
